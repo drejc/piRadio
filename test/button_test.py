@@ -1,54 +1,28 @@
-# !/usr/bin/env python
-#
-# Bitbang'd SPI interface with an MCP3008 ADC device
-# MCP3008 is 8-channel 10-bit analog to digital converter
-#  Connections are:
-#     CLK => SCLK
-#     DOUT =>  MISO
-#     DIN => MOSI
-#     CS => CE0
+# Simple script to test read button state (pressed / not pressed) for TFT buttons
+# Buttons are located on pins 12, 16 and 18
+# BCM (Broadcom SOC channel) numbers are 18, 23 and 24
 
 import time
-import sys
-import spidev
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
-spi = spidev.SpiDev()
-spi.open(0, 0)
+buttonUp = 18
+buttonMiddle = 23
+buttonDown = 24
 
+GPIO.setup(buttonUp, GPIO.IN, GPIO.PUD_UP)
+GPIO.setup(buttonMiddle, GPIO.IN, GPIO.PUD_UP)
+GPIO.setup(buttonDown, GPIO.IN, GPIO.PUD_UP)
 
-def buildReadCommand(channel):
-    startBit = 0x01
-    singleEnded = 0x08
+while True:
+  if GPIO.input(buttonUp) == GPIO.LOW:
+    print ("Up")
+  elif GPIO.input(buttonMiddle) == GPIO.LOW:
+    print ("Middle")
+  elif GPIO.input(buttonDown) == GPIO.LOW:
+    print ("Down")
+  else:
+    print ("none")
 
-    # Return python list of 3 bytes
-    #   Build a python list using [1, 2, 3]
-    #   First byte is the start bit
-    #   Second byte contains single ended along with channel #
-    #   3rd byte is 0
-    return []
-
-
-def processAdcValue(result):
-    '''Take in result as array of three bytes.
-       Return the two lowest bits of the 2nd byte and
-       all of the third byte'''
-    pass
-
-
-def readAdc(channel):
-    if ((channel > 7) or (channel < 0)):
-        return -1
-    r = spi.xfer2(buildReadCommand(channel))
-    return processAdcValue(r)
-
-
-if __name__ == '__main__':
-    try:
-        while True:
-            val = readAdc(0)
-            print
-            "ADC Result: ", str(val)
-            time.sleep(5)
-    except KeyboardInterrupt:
-        spi.close()
-        sys.exit(0)
+  time.sleep(0.5)
