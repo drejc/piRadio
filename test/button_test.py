@@ -1,17 +1,54 @@
-import sys, pygame
-import RPi.GPIO as GPIO
+# !/usr/bin/env python
+#
+# Bitbang'd SPI interface with an MCP3008 ADC device
+# MCP3008 is 8-channel 10-bit analog to digital converter
+#  Connections are:
+#     CLK => SCLK
+#     DOUT =>  MISO
+#     DIN => MOSI
+#     CS => CE0
 
-from pygame.locals import *
 import time
-import subprocess
-import os
-import glob
+import sys
+import spidev
 
-os.environ["SDL_FBDEV"] = "/dev/fb1"
-os.environ["SDL_MOUSEDEV"] = "/dev/input/touchscreen"
-os.environ["SDL_MOUSEDRV"] = "TSLIB"
+spi = spidev.SpiDev()
+spi.open(0, 0)
 
-pygame.init()
 
-# prints out button info when pressed
-def buttons_click():
+def buildReadCommand(channel):
+    startBit = 0x01
+    singleEnded = 0x08
+
+    # Return python list of 3 bytes
+    #   Build a python list using [1, 2, 3]
+    #   First byte is the start bit
+    #   Second byte contains single ended along with channel #
+    #   3rd byte is 0
+    return []
+
+
+def processAdcValue(result):
+    '''Take in result as array of three bytes.
+       Return the two lowest bits of the 2nd byte and
+       all of the third byte'''
+    pass
+
+
+def readAdc(channel):
+    if ((channel > 7) or (channel < 0)):
+        return -1
+    r = spi.xfer2(buildReadCommand(channel))
+    return processAdcValue(r)
+
+
+if __name__ == '__main__':
+    try:
+        while True:
+            val = readAdc(0)
+            print
+            "ADC Result: ", str(val)
+            time.sleep(5)
+    except KeyboardInterrupt:
+        spi.close()
+        sys.exit(0)
