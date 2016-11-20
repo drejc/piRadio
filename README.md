@@ -8,7 +8,7 @@ Raspberry Pi internet radio for 3.2TFT screen
 
  - RaspberryPI 2 or 3
  - TFT Touchscreen display 
-   http://www.waveshare.com/wiki/3.2inch_RPi_LCD_(B)#Image
+   http://www.waveshare.com/wiki/3.2inch_RPi_LCD_(B)
    
 
 ## The software
@@ -18,6 +18,7 @@ Raspberry Pi internet radio for 3.2TFT screen
 Simplest way is to burn this image: http://www.waveshare.com/wiki/3.2inch_RPi_LCD_(B)#Image
 
 #### Check before starting
+- configure your RPi `sudo raspi-config` enable SSH, change default pi user password
 - make sure /dev/input/touchscreen device is present
 - enabled and working network connection 
 - you have calibrated your touchscreen
@@ -28,9 +29,14 @@ Simplest way is to burn this image: http://www.waveshare.com/wiki/3.2inch_RPi_LC
 Update and install mpd / mpc
 
 
-`
-sudo apt-get install mpd mpc python-mpc
-`
+```
+sudo apt-get install git
+
+sudo apt-get install mpd mpc 
+
+
+
+```
 
 
    
