@@ -18,7 +18,7 @@ def main():
 		for event in pygame.event.get():
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				print("screen pressed")  # for debugging purposes
-				print(Style.white)
+				print(Style.Colors.white)
 
 				pos = (pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
 

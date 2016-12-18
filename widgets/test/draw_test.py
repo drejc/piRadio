@@ -1,10 +1,9 @@
-import random
-import pygame, pygame.locals
+import pygame.locals
 
 from widgets import Button
 
 # Initialize the drawing window.
-pygame.init ()
+pygame.init()
 
 white = (255, 255, 255)
 black = (0, 0, 0)
@@ -15,8 +14,7 @@ screen = pygame.display.set_mode(size, 0, 32)
 screen.fill(white)
 
 button = Button.button(200, 20, "test")
-screen.blit (button, (10, 5))
-
+screen.blit(button, (10, 5))
 
 # screen.fill ((250, 250, 250))
 # pygame.display.set_caption ('Draw.draw_rect ()')
@@ -40,10 +38,10 @@ screen.blit (button, (10, 5))
 #     screen.blit (rect, (5 + val, 50 + val))
 
 # Show anything.
-pygame.display.flip ()
+pygame.display.flip()
 
 # Wait for input.
-while not pygame.event.get ([pygame.locals.QUIT]):
-    pass
+while not pygame.event.get([pygame.locals.QUIT]):
+	pass
 
 pygame.time.sleep(0.5)

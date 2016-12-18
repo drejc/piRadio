@@ -14,7 +14,7 @@ class Colors():
 
 Colors = Colors()
 
-# basic styling ...
+# Basic styling ...
 
 # Button
 Button_Border = collections.namedtuple('Button_Border', 'color thickness')
