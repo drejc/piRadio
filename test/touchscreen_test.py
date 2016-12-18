@@ -17,8 +17,11 @@ def main():
 
                                 # write position directly on screen
                                 # render text
-                                label = myfont.render("Click " + str(pos[0]) + ", " + str(pos[1]), 1, (255, 255, 255))
+                                screen.fill(white)
+
+                                label = myfont.render("Click " + str(pos[0]) + ", " + str(pos[1]), 1, black)
                                 screen.blit(label, (100, 100))
+                                pygame.display.update()
 
                                 print(pos) #for checking
 
@@ -30,9 +33,14 @@ def main():
         pygame.display.update()
 
 
-size = width, height = 320, 240
-screen = pygame.display.set_mode(size)
+white = (255, 255, 255)
+black = (0, 0, 0)
 
-myfont = pygame.font.SysFont("monospace", 15)
+size = width, height = 320, 240
+screen = pygame.display.set_mode(size, 0, 32)
+screen.fill(white)
+pygame.display.update()
+
+myfont = pygame.font.SysFont("Arial", 15)
 
 main()
