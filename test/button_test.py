@@ -4,6 +4,7 @@
 
 import time
 import RPi.GPIO as GPIO
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
@@ -16,13 +17,13 @@ GPIO.setup(buttonMiddle, GPIO.IN, GPIO.PUD_UP)
 GPIO.setup(buttonDown, GPIO.IN, GPIO.PUD_UP)
 
 while True:
-  if GPIO.input(buttonUp) == GPIO.LOW:
-    print ("Up")
-  elif GPIO.input(buttonMiddle) == GPIO.LOW:
-    print ("Middle")
-  elif GPIO.input(buttonDown) == GPIO.LOW:
-    print ("Down")
-  else:
-    print ("none")
+	if GPIO.input(buttonUp) == GPIO.LOW:
+		print ("Up")
+	elif GPIO.input(buttonMiddle) == GPIO.LOW:
+		print ("Middle")
+	elif GPIO.input(buttonDown) == GPIO.LOW:
+		print ("Down")
+	else:
+		print ("none")
 
-  time.sleep(0.5)
+	time.sleep(0.5)
