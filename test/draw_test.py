@@ -1,4 +1,7 @@
 import pygame.locals
+import sys
+
+sys.path.append("../widgets")
 
 from widgets import Button
 
