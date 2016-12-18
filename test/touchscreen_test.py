@@ -17,7 +17,7 @@ def main():
 
                                 # write position directly on screen
                                 # render text
-                                label = myfont.render("Click: " + pos, 1, (255, 255, 0))
+                                label = myfont.render("Click " + pos[0] + ", " + pos[1], 1, (255, 255, 255))
                                 screen.blit(label, (100, 100))
 
                                 print(pos) #for checking
