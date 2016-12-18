@@ -5,6 +5,10 @@ import time
 
 from pygame.locals import *
 
+# install widget module
+lib_path = os.path.abspath(os.path.join('..'))
+sys.path.append(lib_path)
+
 from widgets import Style
 
 os.environ["SDL_FBDEV"] = "/dev/fb1"
@@ -18,7 +22,6 @@ def main():
 		for event in pygame.event.get():
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				print("screen pressed")  # for debugging purposes
-				print(Style.Colors.white)
 
 				pos = (pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
 
@@ -26,7 +29,7 @@ def main():
 				# render text
 				screen.fill(white)
 
-				label = myfont.render("Click " + str(pos[0]) + ", " + str(pos[1]), 1, black)
+				label = myfont.render("Click " + str(pos[0]) + ", " + str(pos[1]), 1, Style.Colors.red)
 				screen.blit(label, (100, 100))
 				pygame.display.update()
 

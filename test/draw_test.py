@@ -1,7 +1,11 @@
 import pygame.locals
 import sys
+import os
 
-sys.path.append("../widgets")
+# install widget module
+lib_path = os.path.abspath(os.path.join('..'))
+sys.path.append(lib_path)
+
 
 from widgets import Button
 
@@ -29,7 +33,7 @@ screen.blit(button, (10, 5))
 # rect = Draw.draw_rect (55, 40, (0, 255, 0))
 # screen.blit (rect, (65, 5))
 #
-# rect = Draw.draw_rect (55, 40, (0, 0, 255))
+# rect = Draw.draw_rect (55, 40, (0, 0, 255))less
 # screen.blit (rect, (125, 5))
 
 # Draw encapsulated rectangles.
@@ -47,4 +51,4 @@ pygame.display.flip()
 while not pygame.event.get([pygame.locals.QUIT]):
 	pass
 
-pygame.time.sleep(0.5)
+# pygame.time.sleep(0.5)

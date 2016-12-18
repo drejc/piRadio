@@ -8,6 +8,7 @@ class Colors():
 	white = Color(255, 255, 255)
 	black = Color(0, 0, 0)
 	silver = Color(192, 192, 192)
+	red = Color(255, 0, 0)
 
 	def __setattr__(self, *_):
 		pass
