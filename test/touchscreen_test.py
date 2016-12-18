@@ -14,6 +14,12 @@ def main():
                         if event.type == pygame.MOUSEBUTTONDOWN:
                                 print("screen pressed") #for debugging purposes
                                 pos = (pygame.mouse.get_pos() [0], pygame.mouse.get_pos() [1])
+
+                                # write position directly on screen
+                                # render text
+                                label = myfont.render("Click: " + pos, 1, (255, 255, 0))
+                                screen.blit(label, (100, 100))
+
                                 print(pos) #for checking
 
                         #ensure there is always a safe way to end the program if the touch screen fails
@@ -26,4 +32,7 @@ def main():
 
 size = width, height = 320, 240
 screen = pygame.display.set_mode(size)
+
+myfont = pygame.font.SysFont("monospace", 15)
+
 main()
