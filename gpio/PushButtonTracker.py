@@ -30,7 +30,7 @@ class PushButton():
 		return self.state
 
 	# returns true if button was pressed and released, otherwise false
-	def clicked(self):
+	def clicked(self, double = False):
 
 		if not self.pressed:
 			self.pressed = self.isPressed() # detect press ... once detected
@@ -44,19 +44,19 @@ class PushButton():
 
 		if clicked:
 			self.pressed = False
+			# check if double click
+			diff = time.time() - self.clickTime
+			self.doubleClick = (diff * 1000) < 1000  # less than a second
+			self.clickTime = time.time()
+
+		# detect double click ..
+		if double:
+			clicked = self.doubleClick
+			self.doubleClick = False
 
 		return clicked
 
 	# returns true if button was double clicked
 	def doubleClicked(self):
 
-		if (self.clicked()):
-
-			# check if double click
-			diff = time.time() - self.clickTime
-			self.doubleClick = (diff * 1000) < 1000 # less than a second
-			self.clickTime = time.time()
-
-		double = self.doubleClick
-		self.doubleClick = False
-		return double
+		return self.clicked(True)
