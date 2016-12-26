@@ -16,7 +16,11 @@ def main():
 			screen.fill(white)
 
 			label = myfont.render("Click " + str(tracker.x()) + ", " + str(tracker.y()), 1, Style.Colors.red)
+			label2 = myfont.render("Moved " + str(tracker.deltaX) + ", " + str(tracker.deltaY), 1, Style.Colors.red)
+
 			screen.blit(label, (100, 100))
+			screen.blit(label2, (100, 120))
+
 			pygame.display.update()
 
 
