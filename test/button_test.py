@@ -34,7 +34,7 @@ buttons = [upBtn, middleBtn, downBtn]
 try:
 	while True:
 
-		if downBtn.doubleClick:
+		if downBtn.doubleClicked():
 			print "EXIT"
 			GPIO.cleanup()
 			sys.exit(0)
@@ -44,17 +44,6 @@ try:
 				print button.name
 
 			if button.doubleClicked():
-				#
-				# if GPIO.input(buttonUp) == GPIO.LOW:
-				# 	print ("Up")
-				# elif GPIO.input(buttonMiddle) == GPIO.LOW:
-				# 	print ("Middle")
-				# elif GPIO.input(buttonDown) == GPIO.LOW:
-				# 	print ("Down")
-				# else:
-				# 	print ("none")
-
-				# time.sleep(0.5)
 				print "Double click " + button.name
 
 
