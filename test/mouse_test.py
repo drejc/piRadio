@@ -1,7 +1,11 @@
 import sys
 import pygame
+import os
 
-import events
+# install events and widgets module
+lib_path = os.path.abspath(os.path.join('..'))
+sys.path.append(lib_path)
+
 from events.TouchTracker import TouchTracker
 from widgets import Style
 
