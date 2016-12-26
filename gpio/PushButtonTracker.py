@@ -28,12 +28,18 @@ class PushButton():
 	# returns true if button was pressed and released, otherwise false
 	def clicked(self):
 
+		if not self.pressed:
+			self.pressed = self.isPressed() # detect press ... once detected
+
 		if self.low:
 			state = 0
 		else:
 			state = 1
 
-		clicked = (GPIO.input(self.pin) == state) and self.state  # button was pushed but currently it is not
-		self.state = False
+		clicked = (GPIO.input(self.pin) == state) and self.pressed # button was pushed but currently it is not
+
+		if clicked:
+			self.pressed = False
+
 		return clicked
 
