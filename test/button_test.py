@@ -35,6 +35,7 @@ try:
 	while True:
 
 		if downBtn.doubleClick:
+			print "EXIT"
 			GPIO.cleanup()
 			sys.exit(0)
 

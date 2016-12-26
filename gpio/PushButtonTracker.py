@@ -40,21 +40,17 @@ class PushButton():
 		else:
 			state = 1
 
-		clicked = (GPIO.input(self.pin) == state) and self.pressed # button was pushed but currently it is not
+		return (GPIO.input(self.pin) == state) and self.pressed # button was pushed but currently it is not
 
-		if clicked:
-			self.pressed = False
+	# returns true if button was double clicked
+	def doubleClicked(self):
+
+		if (self.clicked()):
 
 			# check if double click
 			diff = time.time() - self.clickTime
 			self.doubleClick = (diff * 1000) < 1000 # less than a second
-
 			self.clickTime = time.time()
-
-		return clicked
-
-	# returns true if button was double clicked
-	def doubleClicked(self):
 
 		double = self.doubleClick
 		self.doubleClick = False
