@@ -63,6 +63,7 @@ clock = Clock(310, 50)
 # Show anything.
 pygame.display.flip()
 
+clock.timeFormat = "%H:%M"
 
 def main():
 

@@ -9,6 +9,7 @@ class Colors():
 	black = Color(0, 0, 0)
 	silver = Color(192, 192, 192)
 	red = Color(255, 0, 0)
+	gray = Color(128, 128, 128)
 
 	def __setattr__(self, *_):
 		pass
@@ -31,4 +32,4 @@ clock = Button_Style(Colors.white,
                      Button_Border(Colors.white, 0),
                      Button_Label(Colors.black, "Arial", 30))
 
-clock_date = Button_Label(Colors.silver, "Arial", 20)
+clock_date = Button_Label(Colors.gray, "Arial", 15)

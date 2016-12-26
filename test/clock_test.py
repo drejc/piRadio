@@ -12,7 +12,6 @@ from widgets.Clock import Clock
 os.environ["SDL_FBDEV"] = "/dev/fb1"
 os.environ["SDL_MOUSEDEV"] = "/dev/input/touchscreen"
 os.environ["SDL_MOUSEDRV"] = "TSLIB"
-pygame.init()
 
 # Initialize the drawing window.
 pygame.init()
@@ -22,6 +21,7 @@ screen = pygame.display.set_mode(size, 0, 32)
 screen.fill(Style.Colors.white)
 
 clock = Clock(310, 50)
+clock.timeFormat = "%H:%M"
 
 # Show anything.
 pygame.display.flip()
