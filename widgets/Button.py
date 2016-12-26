@@ -13,9 +13,10 @@ def button(width, height, caption):
 	surface.fill(Style.button.color)
 
 	# border
-	draw.lines(surface, Style.button.border.color, True,
-	           [(0, 0), (width - thickness, 0), (width - thickness, height - thickness), (0, height - thickness)],
-	           thickness)
+	if thickness > 0:
+		draw.lines(surface, Style.button.border.color, True,
+		           [(0, 0), (width - thickness, 0), (width - thickness, height - thickness), (0, height - thickness)],
+		           thickness)
 
 	# label
 	myfont = font.SysFont(Style.button.label.font, Style.button.label.size)

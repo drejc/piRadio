@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
+# use to detect pressed, click and double click push button state
+# read isPressed(), clicked() or doubleClicked() boolean flag
 class PushButton():
 
 	def __init__(self, name, gpioIn, gpioUpDown):
@@ -46,7 +48,7 @@ class PushButton():
 			self.pressed = False
 			# check if double click
 			diff = time.time() - self.clickTime
-			self.doubleClick = (diff * 1000) < 1000  # less than a second
+			self.doubleClick = (diff * 1000) < 1000  # less than a second (it is a double click)
 			self.clickTime = time.time()
 
 		# detect double click ..

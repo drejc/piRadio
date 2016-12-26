@@ -3,6 +3,12 @@ import sys
 import os
 
 # install widget module
+import time
+
+from widgets import Style
+from widgets.Clock import Clock
+from widgets.Label import Label
+
 lib_path = os.path.abspath(os.path.join('..'))
 sys.path.append(lib_path)
 
@@ -22,6 +28,16 @@ screen.fill(white)
 
 button = Button.button(200, 20, "test")
 screen.blit(button, (10, 5))
+
+
+label = Label(200, 20, Style.Colors.white)
+label.caption("Some dummy text", Style.clock_date)
+
+
+screen.blit(label.surface, (10, 35))
+
+
+clock = Clock(310, 50)
 
 # screen.fill ((250, 250, 250))
 # pygame.display.set_caption ('Draw.draw_rect ()')
@@ -47,8 +63,22 @@ screen.blit(button, (10, 5))
 # Show anything.
 pygame.display.flip()
 
-# Wait for input.
-while not pygame.event.get([pygame.locals.QUIT]):
-	pass
 
-# pygame.time.sleep(0.5)
+def main():
+
+	while True:
+		pygame.display.update()
+
+		#label.caption(str(time.time()), Style.clock_date)
+		#screen.blit(label.surface, (10, 35))
+
+		screen.blit(clock.show(), (5, 70))
+
+		for event in pygame.event.get():
+
+			# ensure there is always a safe way to end the program if the touch screen fails
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_ESCAPE:
+					sys.exit()
+
+main()

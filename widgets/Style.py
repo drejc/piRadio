@@ -2,9 +2,9 @@ import collections
 
 from pygame import Color
 
+
 # List of basic colors
 class Colors():
-
 	white = Color(255, 255, 255)
 	black = Color(0, 0, 0)
 	silver = Color(192, 192, 192)
@@ -12,6 +12,7 @@ class Colors():
 
 	def __setattr__(self, *_):
 		pass
+
 
 Colors = Colors()
 
@@ -26,5 +27,8 @@ button = Button_Style(Colors.silver,
                       Button_Border(Colors.black, 2),
                       Button_Label(Colors.black, "Arial", 15))
 
+clock = Button_Style(Colors.white,
+                     Button_Border(Colors.white, 0),
+                     Button_Label(Colors.black, "Arial", 30))
 
-
+clock_date = Button_Label(Colors.silver, "Arial", 20)
