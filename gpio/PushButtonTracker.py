@@ -55,5 +55,7 @@ class PushButton():
 
 	# returns true if button was double clicked
 	def doubleClicked(self):
-		return self.doubleClick
 
+		double = self.doubleClick
+		self.doubleClick = False
+		return double
