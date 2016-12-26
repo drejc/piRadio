@@ -32,20 +32,24 @@ middleBtn = PushButton("Middle", 23, GPIO.PUD_UP)
 
 buttons = [upBtn, middleBtn, downBtn]
 
-while True:
+try:
+	while True:
 
-	for button in buttons:
-		if button.isPressed():
-			print button.name
+		for button in buttons:
+			if button.isPressed():
+				print button.name
 
-	#
-	# if GPIO.input(buttonUp) == GPIO.LOW:
-	# 	print ("Up")
-	# elif GPIO.input(buttonMiddle) == GPIO.LOW:
-	# 	print ("Middle")
-	# elif GPIO.input(buttonDown) == GPIO.LOW:
-	# 	print ("Down")
-	# else:
-	# 	print ("none")
+		#
+		# if GPIO.input(buttonUp) == GPIO.LOW:
+		# 	print ("Up")
+		# elif GPIO.input(buttonMiddle) == GPIO.LOW:
+		# 	print ("Middle")
+		# elif GPIO.input(buttonDown) == GPIO.LOW:
+		# 	print ("Down")
+		# else:
+		# 	print ("none")
 
-	time.sleep(0.5)
+		# time.sleep(0.5)
+
+except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt
+	GPIO.cleanup()                 # resets all GPIO ports used by this program
