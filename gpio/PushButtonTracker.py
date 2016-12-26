@@ -47,7 +47,7 @@ class PushButton():
 
 			# check if double click
 			diff = time.time() - self.clickTime
-			self.doubleClick = diff < 1000 # less than a second
+			self.doubleClick = (diff * 1000) < 1000 # less than a second
 
 			self.clickTime = time.time()
 
