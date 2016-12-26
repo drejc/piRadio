@@ -54,3 +54,5 @@ tracker = TouchTracker()
 myfont = pygame.font.SysFont("Arial", 15)
 
 main()
+
+pygame.display.quit()

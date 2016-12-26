@@ -2,28 +2,50 @@
 # Buttons are located on pins 12, 16 and 18
 # BCM (Broadcom SOC channel) numbers are 18, 23 and 24
 
+import os
+import sys
 import time
+
 import RPi.GPIO as GPIO
+
+# import needed modules
+lib_path = os.path.abspath(os.path.join('..'))
+sys.path.append(lib_path)
+
+from gpio.PushButtonTracker import PushButton
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-buttonUp = 18
-buttonMiddle = 23
-buttonDown = 24
+# buttonUp = 18
+# buttonMiddle = 23
+# buttonDown = 24
 
-GPIO.setup(buttonUp, GPIO.IN, GPIO.PUD_UP)
-GPIO.setup(buttonMiddle, GPIO.IN, GPIO.PUD_UP)
-GPIO.setup(buttonDown, GPIO.IN, GPIO.PUD_UP)
+#
+# GPIO.setup(buttonUp, GPIO.IN, GPIO.PUD_UP)
+# GPIO.setup(buttonMiddle, GPIO.IN, GPIO.PUD_UP)
+# GPIO.setup(buttonDown, GPIO.IN, GPIO.PUD_UP)
+
+upBtn = PushButton("Up", 18, GPIO.PUD_UP)
+downBtn = PushButton("Down", 24, GPIO.PUD_UP)
+middleBtn = PushButton("Middle", 23, GPIO.PUD_UP)
+
+buttons = [upBtn, middleBtn, downBtn]
 
 while True:
-	if GPIO.input(buttonUp) == GPIO.LOW:
-		print ("Up")
-	elif GPIO.input(buttonMiddle) == GPIO.LOW:
-		print ("Middle")
-	elif GPIO.input(buttonDown) == GPIO.LOW:
-		print ("Down")
-	else:
-		print ("none")
+
+	for button in buttons:
+		if button.isPressed():
+			print button.name
+
+	#
+	# if GPIO.input(buttonUp) == GPIO.LOW:
+	# 	print ("Up")
+	# elif GPIO.input(buttonMiddle) == GPIO.LOW:
+	# 	print ("Middle")
+	# elif GPIO.input(buttonDown) == GPIO.LOW:
+	# 	print ("Down")
+	# else:
+	# 	print ("none")
 
 	time.sleep(0.5)
