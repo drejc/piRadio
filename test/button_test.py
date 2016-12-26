@@ -4,7 +4,6 @@
 
 import os
 import sys
-import time
 
 import RPi.GPIO as GPIO
 
@@ -36,7 +35,7 @@ try:
 	while True:
 
 		for button in buttons:
-			if button.isPressed():
+			if button.clicked():
 				print button.name
 
 		#
