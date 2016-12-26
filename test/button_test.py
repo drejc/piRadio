@@ -40,6 +40,10 @@ try:
 
 			if button.doubleClicked():
 				print "Double click " + button.name
+
+		if downBtn.doubleClick:
+			GPIO.cleanup()
+			sys.exit(0)
 		#
 		# if GPIO.input(buttonUp) == GPIO.LOW:
 		# 	print ("Up")
