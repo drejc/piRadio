@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import time
 
 class PushButton():
 
@@ -10,8 +11,11 @@ class PushButton():
 
 		GPIO.setup(gpioIn, GPIO.IN, gpioUpDown)
 
-		self.oldState = False
+		self.pressed = False
 		self.state = False
+
+		self.clickTime = 0
+		self.doubleClick = False
 		pass
 
 	# returns true while button is being pressed, or false when released
@@ -41,5 +45,15 @@ class PushButton():
 		if clicked:
 			self.pressed = False
 
+			# check if double click
+			diff = time.time() - self.clickTime
+			self.doubleClick = diff < 1000 # less than a second
+
+			self.clickTime = time.time()
+
 		return clicked
+
+	# returns true if button was double clicked
+	def doubleClicked(self):
+		return self.doubleClick
 

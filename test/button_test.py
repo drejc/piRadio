@@ -38,6 +38,8 @@ try:
 			if button.clicked():
 				print button.name
 
+			if button.doubleClicked():
+				print "Double click " + button.name
 		#
 		# if GPIO.input(buttonUp) == GPIO.LOW:
 		# 	print ("Up")
