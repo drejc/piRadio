@@ -21,7 +21,7 @@ screen = pygame.display.set_mode(size, 0, 32)
 screen.fill(Style.Colors.white)
 
 clock = Clock(310, 50)
-clock.timeFormat = "%H:%M"
+#clock.timeFormat = "%H:%M"
 
 # Show anything.
 pygame.display.flip()
@@ -36,7 +36,8 @@ def main():
 
 	while True:
 		pygame.display.update()
-		screen.blit(clock.show(), (5, 70))
+	#	screen.blit(clock.show(), (5, 70))
+		screen.blit(clock.horizontal(), (5, 120))
 
 		if downBtn.doubleClicked():
 			sys.exit()

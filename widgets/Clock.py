@@ -11,10 +11,6 @@ from widgets.Label import Label
 class Clock():
 	def __init__(self, width, height):
 
-
-		self.time = Label(width, height * 0.70, Style.clock.color)
-		self.date = Label(width, height * 0.30, Style.clock.color)
-
 		self.width = width
 		self.height = height
 
@@ -25,15 +21,23 @@ class Clock():
 
 		self.__oldTimeLabel = ""
 
-	def show(self):
-		timeLabel = time.strftime(self.timeFormat)
+	# vertical display
+	def show(self, horizontal=False):
+
+		if horizontal:
+			self.time = Label(self.width , self.height * 0.70, Style.clock.color)
+			self.date = Label(self.width, self.height * 0.30, Style.clock.color)
+
+		else:
+			self.time = Label(self.width, self.height * 0.70, Style.clock.color)
+			self.date = Label(self.width, self.height * 0.30, Style.clock.color)
+
+		timeLabel = self.getTimeCaption()
 
 		if self.__oldTimeLabel == timeLabel: # dont refresh if not necessary
 			pass
 
-
-		weekDay = self.dayNames[datetime.today().weekday()]
-		dateLabel = weekDay + " " + str(datetime.today().day) + " " + self.monthNames[datetime.today().month - 1]
+		dateLabel = self.getDateCaption()
 
 		timeSurface = self.time.caption(timeLabel, Style.clock.label)
 		dateSurface = self.date.caption(dateLabel, Style.clock_date)
@@ -41,15 +45,31 @@ class Clock():
 		surface = Surface((self.width, self.height))
 		surface.fill(Style.clock.color)
 
-		offsetX = (self.width - self.time.widht()) / 2
-		surface.blit(timeSurface, (offsetX, 0))
+		if horizontal:
 
-		offsetX = (self.width - self.date.widht()) / 2
-		offsetY = self.height * 0.7
-		surface.blit(dateSurface, (offsetX, offsetY))
+			offsetX = (self.width - self.time.width() - self.date.width()) / 2
+			surface.blit(timeSurface, (offsetX, 0))
+
+			offsetX = offsetX + self.date.width()
+			surface.blit(dateSurface, (offsetX, 0))
+
+		else:
+			surface.blit(timeSurface, (0, 0))
+
+			offsetY = self.height * 0.7
+			surface.blit(dateSurface, (0, offsetY))
 
 		self.__oldTimeLabel = timeLabel
 		return surface
 
+	def horizontal(self):
+		return self.show(True)
+
+	def getTimeCaption(self):
+		return time.strftime(self.timeFormat)
+
+	def getDateCaption(self):
+		weekDay = self.dayNames[datetime.today().weekday()]
+		return weekDay + " " + str(datetime.today().day) + " " + self.monthNames[datetime.today().month - 1]
 
 

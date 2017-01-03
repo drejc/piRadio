@@ -17,6 +17,7 @@ from widgets import Button
 
 # Initialize the drawing window.
 pygame.init()
+pygame.font.init()
 
 white = (255, 255, 255)
 black = (0, 0, 0)
@@ -36,6 +37,7 @@ label.caption("Some dummy text", Style.clock_date)
 
 screen.blit(label.surface, (10, 35))
 
+screenClock = pygame.time.Clock()
 
 clock = Clock(310, 50)
 
@@ -68,12 +70,13 @@ clock.timeFormat = "%H:%M"
 def main():
 
 	while True:
-		pygame.display.update()
+		#pygame.display.update()
 
 		#label.caption(str(time.time()), Style.clock_date)
 		#screen.blit(label.surface, (10, 35))
 
 		screen.blit(clock.show(), (5, 70))
+		screen.blit(clock.horizontal(), (5, 120))
 
 		for event in pygame.event.get():
 
@@ -81,5 +84,8 @@ def main():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_ESCAPE:
 					sys.exit()
+
+		pygame.display.flip()
+		screenClock.tick(24)
 
 main()
